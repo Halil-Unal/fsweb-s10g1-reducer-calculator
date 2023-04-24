@@ -1,6 +1,6 @@
 import React from 'react';
 import { useReducer } from 'react';
-import { ADD_ONE, addOne, APPLY_NUMBER, CHANGE_OPERATION,applyNumber,changeOperation ,remakenumber,REMAKE_OPERATION} from "./actions/index.js";
+import {CHANGE_THİNGSS,changethings,delthings,DEL_THİNGS, ADD_ONE, addOne, APPLY_NUMBER, CHANGE_OPERATION,applyNumber,changeOperation ,remakenumber,REMAKE_OPERATION,CHANGE_THİNGS,changething} from "./actions/index.js";
 
 import TotalDisplay from './components/TotalDisplay';
 import CalcButton from './components/CalcButton';
@@ -41,10 +41,29 @@ function reducer(state, action) {
         ...state,
        
         total:0,
+        
+      };
+
+    }
+  
+    case CHANGE_THİNGS: {
+      return {
+        ...state,
+        memory:state.total
       };
     }
-
-    
+    case CHANGE_THİNGSS: {
+      return {
+        ...state,
+       total:state.memory
+      };
+    }
+    case DEL_THİNGS: {
+      return {
+        ...state,
+        memory:0
+      };
+    }
     default: {
       throw new Error(`Unknown action: ${action.type}`);
     }
@@ -89,15 +108,15 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"M+"} />
-              <CalcButton value={"MR"} />
-              <CalcButton value={"MC"} />
+              <CalcButton onClick={() => dispatch(changething("CE"))} value={"M+"} />
+              <CalcButton onClick={() => dispatch(changethings("MR"))}value={"MR"} />
+              <CalcButton  onClick={() => dispatch(delthings("MC"))} value={"MC"} />
             </div>
 
             <div className="row">
-              <CalcButton onClick={() => dispatch(addOne())} value={1} />
+              <CalcButton onClick={() => dispatch(applyNumber(1))} value={1} />
               <CalcButton onClick={() =>  dispatch(applyNumber(2))} value={2} />
-              <CalcButton onClick={() => () => dispatch(applyNumber(3))} value={3} />
+              <CalcButton onClick={() =>  dispatch(applyNumber(3))} value={3} />
             </div>
 
             <div className="row">
