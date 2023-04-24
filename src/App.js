@@ -25,7 +25,7 @@ function reducer(state, action) {
       }
       return {
         ...state,
-        total: result,
+        total:Number(result),
        
       };
     }
@@ -115,7 +115,7 @@ function App() {
 
             <div className="row">
               <CalcButton onClick={() => dispatch(applyNumber(1))} value={1} />
-              <CalcButton onClick={() =>  dispatch(applyNumber(2))} value={2} />
+              <CalcButton onClick={(e) =>  dispatch(applyNumber(e.target.value))} value={2} />
               <CalcButton onClick={() =>  dispatch(applyNumber(3))} value={3} />
             </div>
 
