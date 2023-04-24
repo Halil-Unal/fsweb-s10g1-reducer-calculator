@@ -55,7 +55,7 @@ function reducer(state, action) {
     case CHANGE_THİNGSS: {
       return {
         ...state,
-       total:state.memory
+       total:state.memory+state.total
       };
     }
     case DEL_THİNGS: {
