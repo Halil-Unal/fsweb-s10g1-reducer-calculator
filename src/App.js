@@ -1,6 +1,6 @@
 import React from 'react';
 import { useReducer } from 'react';
-import { ADD_ONE, addOne, APPLY_NUMBER, CHANGE_OPERATION,applyNumber,changeOperation } from "./actions/index.js";
+import { ADD_ONE, addOne, APPLY_NUMBER, CHANGE_OPERATION,applyNumber,changeOperation ,remakenumber,REMAKE_OPERATION} from "./actions/index.js";
 
 import TotalDisplay from './components/TotalDisplay';
 import CalcButton from './components/CalcButton';
@@ -36,7 +36,13 @@ function reducer(state, action) {
         operation: action.payload
       };
     }
-    
+    case REMAKE_OPERATION: {
+      return {
+        ...state,
+       
+        total:0,
+      };
+    }
 
     
     default: {
@@ -113,7 +119,7 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"} />
+              <CalcButton  onClick={() => dispatch(remakenumber("CE"))} value={"CE"} />
             </div>
 
           </form>
